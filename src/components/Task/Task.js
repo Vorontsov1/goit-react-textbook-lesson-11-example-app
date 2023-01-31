@@ -1,15 +1,13 @@
 import { useDispatch } from "react-redux";
-// Импортируем генератор экшена
-import { deleteTask, toggleCompleted } from "redux/action";
 import { MdClose } from "react-icons/md";
+import { deleteTask, toggleCompleted } from "redux/taskSlice";
 import css from "./Task.module.css";
 
 export const Task = ({ task }) => {
-  // Получаем ссылку на функцию отправки экшенов
   const dispatch = useDispatch();
+
   const handleDelete = () => dispatch(deleteTask(task.id));
-  // Вызываем генератор экшена и передаём идентификатор задачи
-  // Отправляем результат - экшен удаления задачи
+
   const handleToggle = () => dispatch(toggleCompleted(task.id));
 
   return (

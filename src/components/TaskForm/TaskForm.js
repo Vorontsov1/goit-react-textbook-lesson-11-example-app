@@ -1,26 +1,22 @@
 import { useDispatch } from "react-redux";
-// Импортируем генератор экшена
-import { addTask } from "redux/action";
 import { Button } from "components/Button/Button";
-
+import { addTask } from "redux/taskSlice";
+import css from "./TaskForm.module.css";
 
 export const TaskForm = () => {
-  //получаем ссылку на функцию отправки экшенов
   const dispatch = useDispatch();
 
-
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
-    // Вызываем генератор экшена и передаем текст задачи для поля payload
-    // Отправляем результат - экшен создания задачи
     dispatch(addTask(form.elements.text.value));
     form.reset();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={css.form} onSubmit={handleSubmit}>
       <input
+        className={css.field}
         type="text"
         name="text"
         placeholder="Enter task text..."
